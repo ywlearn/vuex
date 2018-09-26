@@ -21,7 +21,7 @@
 			创建完成）, beforeMount（挂载前）, mounted（挂载完成）, beforeUpdate（
 			更新前）, updated（更新完成）, beforeDestroy（销毁前）, destroyed（销毁完成）。
 		</p>
-		<common @transferUser="getUser" :navs="navs">
+		<common @transferUser="getUser" :navs="navs" :message="message">
 			<h1>不具名插口</h1>
 			<h2 slot="wise">这里对应wise插口</h2>
 			<h3 slot="wrong">这里对应wrong插口</h3>
@@ -30,22 +30,36 @@
 			</template>
 		</common>
 		<p>用户名为： {{user}}</p>
+		<h2>动态组件</h2>
+			<button @click="check1">组件1</button>
+			<button @click="check2">组件1</button>
+			<button @click="check3">组件1</button>
+			<component v-bind:is="tableView"></component>
+		<h2>递归组件</h2>
 	</div>
 </template>
 
 <script>
 	import common from '@/components/common'
+	import simple01 from '@/components/simple01'
+	import simple02 from '@/components/simple02'
+	import simple03 from '@/components/simple03'
+	import axios from 'axios'
 	export default {
 		data() {
 			return {
 				message:"组件注册",
 				user:"",
-				navs:[{text:1},{text:2},{text:3}]
+				navs:[{text:1},{text:2},{text:3}],
+				tableView: 'simple01'
 			}
 		},
 		//引入子组件
 		components:{
-			common
+			common,
+			simple01,
+			simple02,
+			simple03
 		},
 		//引入组件的另一种写法
 		//components:{
@@ -54,7 +68,19 @@
 		methods: {
 			getUser(msg) {
 				this.user = msg
-			}
+			},
+			check1() {
+				this.tableView = "simple01";
+			},
+			check2() {
+				this.tableView = "simple02"; 
+			},
+			check3() {
+				this.tableView = "simple03";
+			}	
+		},
+		created() {
+			console.log(1)
 		}
 		//在父组件中，声明了一个方法 getUser，用 transferUser 事件
 		//调用 getUser 方法，获取到从子组件传递过来的参数 username

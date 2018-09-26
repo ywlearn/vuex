@@ -20,7 +20,10 @@
 		props:["message","navs"],
 		methods: {
 			//子组件向父组件传递数据 通过事件传递
-			setUser: function () {
+//			setUser: function () {
+//				this.$emit('transferUser',this.username)
+//			}
+			setUser() {
 				this.$emit('transferUser',this.username)
 			}
 			//在 setUser 中，使用了 $emit 来遍历 transferUser 事件，并返回 this.username

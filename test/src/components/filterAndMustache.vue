@@ -224,18 +224,8 @@
 				if(!value) return '';
 				value = value.toString();
 				return value.toUpperCase();
-			},
-			classComp: function() {
-				return {
-					active: this.isActive && !this.hasError,
-					'danger': this.hasError && !this.isActive
-				}
-			},
-			styleComp: function() {
-				return {
-					color: this.isActive ? 'orange' : 'black'
-				}
 			}
+			
 		},
 		computed: { //计算属性
 			//计算属性就是当其依赖属性的值发生变化时，这个属性的值也会自动更新，与之相关的DOM部分也会同步更新。
@@ -246,6 +236,17 @@
 				},
 				set: function(newValue) {
 					this.message = newValue;
+				}
+			},
+			classComp: function() {
+				return {
+					active: this.isActive && !this.hasError,
+					'danger': this.hasError && !this.isActive
+				}
+			},
+			styleComp: function() {
+				return {
+					color: this.isActive ? 'orange' : 'black'
 				}
 			}
 		},

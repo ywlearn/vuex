@@ -2,8 +2,7 @@
   <div>
     <span>{{ msg }}</span> <!-- 我们稍后在store上定义一个msg属性 -->
     <span>{{ count }}</span>
-    <button @click='fun'>获取数据</button>
-    
+    <button @click='fun'>获取数据</button>    
   </div>
 </template>
 
